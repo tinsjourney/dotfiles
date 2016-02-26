@@ -25,7 +25,8 @@ ln -s $HOME/dotfiles/gitconfig $HOME/.gitconfig
 # feh image viewer
 # bc : calculator
 # dnsutils : DNS resolution (ie: dig)
-apt install mariadb-client scrot feh bc dnsutils
+# corkscrew : git push git@github.com via http_proxy
+apt install mariadb-client scrot feh bc dnsutils corkscrew
 ln -s $HOME/dotfiles/i3 $HOME/.config/i3
 
 # Copy Ca-cert
