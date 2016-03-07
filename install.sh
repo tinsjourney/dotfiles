@@ -3,6 +3,9 @@ proxy_pass=
 proxy="http://$proxy_user:$proxy_pass@proxy:8080"
 
 echo "deb https://apt.dockerproject.org/repo debian-jessie main" > /etc/apt/sources.list.d/docker.list
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609Deb420f24df52
+echo "deb http://deb-multimedia.gnali.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 5C808C2B65558117
 apt install docker-engine docker-compose
 usermod -a -G docker svigan
 mkdir /etc/systemd/system/docker.service.d
@@ -26,7 +29,8 @@ ln -s $HOME/dotfiles/gitconfig $HOME/.gitconfig
 # bc : calculator
 # dnsutils : DNS resolution (ie: dig)
 # corkscrew : git push git@github.com via http_proxy
-apt install mariadb-client scrot feh bc dnsutils corkscrew
+# ksh : a real shell
+apt install mariadb-client scrot feh bc dnsutils corkscrew ksh gawk
 ln -s $HOME/dotfiles/i3 $HOME/.config/i3
 
 # Copy Ca-cert
