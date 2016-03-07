@@ -40,5 +40,7 @@ alias week='date +%V'
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
-# Temporary Debia container
-alias dockerdeb='docker run -it --rm -v /etc/apt/apt.conf:/etc/apt/apt.conf -v /tmp/.X11-unix:/tmp/.X11-unix/ -e DISPLAY=unix$DISPLAY debian'
+# Temporary Debian container
+function dockerdeb {
+	docker run -it --rm -v /etc/apt/apt.conf:/etc/apt/apt.conf -v /tmp/.X11-unix:/tmp/.X11-unix/ -e DISPLAY=unix$DISPLAY $@ debian
+}
