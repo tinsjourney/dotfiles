@@ -2,3 +2,26 @@
 [user]
 	name = tinsjourney
 	email = tintin@gnali.org
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+[push]
+	default = simple
+	followTags = true
+[core]
+	editor = vim
+	pager = less -R
+	autocrlf = input
+[alias]
+	s = status
+	lg = log --oneline --decorate --all --graph
+	ls = ls-files
+	lo = log --no-merges
+[pull]
+	rebase = true
+[rerere]
+	enabled = true
+[credential]
+	helper = store
