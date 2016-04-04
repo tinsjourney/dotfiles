@@ -1,0 +1,52 @@
+del_stopped(){
+        local name=$1
+        local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
+
+        if [[ "$state" == "false" ]]; then
+                docker rm $name
+        fi
+}
+
+# Temporary Debian container
+function dockerdeb {
+	docker run -it --rm -v /etc/apt/apt.conf:/etc/apt/apt.conf -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY $@ debian
+}
+# Apt-file
+function apt_file {
+	docker run -it --rm -v /etc/apt/apt.conf:/etc/apt/apt.conf -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name apt-file jess/apt-file
+}
+alias apt-file="apt_file"
+# CentOS
+function dockercentos() {
+	docker run -it --rm -v /home/svigan/Docker/centos.yum.conf:/etc/yum.conf -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY $@ centos
+}
+# Chrome
+chrome () {
+	local proxy=
+	local map=
+	local args=$@
+
+	del_stopped chrome
+
+	docker run -d \
+		--memory 512m \
+		--net host \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-v $HOME/Downloads:/root/Downloads \
+		-v $HOME/.chrome:/data \
+		-v $HOME:/home/svigan \
+		-v /dev/shm:/dev/shm \
+		-v /etc/hosts:/etc/hosts \
+		--device /dev/snd \
+                --device /dev/dri \
+                --device /dev/bus/usb \
+                --group-add audio \
+                --group-add video \
+                --name chrome \
+		jess/chrome --user-data-dir=/data \
+		--no-sandbox \
+                --proxy-server="$proxy" \
+                --host-resolver-rules="$map" "$args"
+}
