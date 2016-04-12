@@ -21,6 +21,7 @@ sudo chmod 440 $HOME/dotfiles/sudoers
 echo "source ~/dotfiles/bashrc" >> $HOME/.bashrc
 
 ln -s $HOME/dotfiles/gitconfig $HOME/.gitconfig
+ln -s $HOME/dotfiles/gtkrc $HOME/.gtkrc
 
 # Install extra packages
 # mariadb-client for mysql client

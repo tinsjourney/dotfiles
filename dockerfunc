@@ -50,3 +50,18 @@ chrome () {
                 --proxy-server="$proxy" \
                 --host-resolver-rules="$map" "$args"
 }
+
+gimp() {
+	del_stopped gimp
+
+	docker run -d \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-v $HOME/Pictures:/root/Pictures \
+		-v $HOME/.gtkrc:/root/.gtkrc \
+		-e GDK_SCALE \
+		-e GDK_DPI_SCALE \
+		--name gimp \
+		jess/gimp
+}
