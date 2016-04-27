@@ -9,16 +9,37 @@ del_stopped(){
 
 # Temporary Debian container
 function dockerdeb {
-	docker run -it --rm -v /etc/apt/apt.conf:/etc/apt/apt.conf -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY $@ debian
+	local args=$@
+
+	docker run -it --rm \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-v /etc/apt/apt.conf:/etc/apt/apt.conf \
+		$args \
+		debian
 }
 # Apt-file
 function apt_file {
-	docker run -it --rm -v /etc/apt/apt.conf:/etc/apt/apt.conf -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name apt-file jess/apt-file
+	docker run -it --rm \
+		-v /etc/apt/apt.conf:/etc/apt/apt.conf \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		--name apt-file \
+		jess/apt-file
 }
 alias apt-file="apt_file"
 # CentOS
 function dockercentos() {
-	docker run -it --rm -v /home/svigan/Docker/centos.yum.conf:/etc/yum.conf -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY $@ centos
+	local args=$@
+
+	docker run -it --rm \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-v /home/svigan/Docker/centos.yum.conf:/etc/yum.conf \
+		$args \
+		centos
 }
 # Chrome
 chrome () {
@@ -64,4 +85,13 @@ gimp() {
 		-e GDK_DPI_SCALE \
 		--name gimp \
 		jess/gimp
+}
+
+tmpnginx() {
+	docker run --rm \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v $HOME/www:/usr/share/nginx/html:ro \
+		-p 8080:80 \
+		--name tmpnginx \
+		nginx
 }
