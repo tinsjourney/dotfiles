@@ -1,6 +1,7 @@
 source $HOME/dotfiles/WORK/functions
 source $HOME/dotfiles/aliases
 source $HOME/dotfiles/dockerfunc
+source $HOME/dotfiles/func
 
 if ! echo ${PATH} | grep -q /opt/opensvc/etc; then
     PATH=${PATH}:/opt/opensvc/etc
