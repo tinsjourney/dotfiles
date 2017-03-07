@@ -61,7 +61,6 @@ chrome () {
 		-v /dev/shm:/dev/shm \
 		-v /etc/hosts:/etc/hosts \
 		--device /dev/snd \
-                --device /dev/dri \
                 --device /dev/bus/usb \
                 --group-add audio \
                 --group-add video \
