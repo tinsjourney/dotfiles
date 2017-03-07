@@ -1,0 +1,3 @@
+[submodule "MiniVim"]
+	path = MiniVim
+	url = git@github.com:sd65/MiniVim.git
