@@ -2,11 +2,16 @@
 [user]
 	name = tinsjourney
 	email = tintin@gnali.org
+	signingkey = F52B8C03645F1BBE
 [color]
 	diff = auto
-	status = auto
+        status = auto
 	branch = auto
 	ui = auto
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
 [push]
 	default = simple
 	followTags = true
@@ -25,3 +30,5 @@
 	enabled = true
 [credential]
 	helper = store
+#[http "https://sgithub.fr.world.socgen"]
+#        sslcainfo = /home/svigan/.sgithub_ca.pem
