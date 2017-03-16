@@ -31,7 +31,8 @@ ln -s $HOME/dotfiles/gtkrc $HOME/.gtkrc
 # dnsutils : DNS resolution (ie: dig)
 # corkscrew : git push git@github.com via http_proxy
 # ksh : a real shell
-apt install mariadb-client scrot feh bc dnsutils corkscrew ksh gawk
+# zathura : pdf viewer
+apt install mariadb-client scrot feh bc dnsutils corkscrew ksh gawk zathura
 ln -s $HOME/dotfiles/i3 $HOME/.config/i3
 
 # Copy Ca-cert

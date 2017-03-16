@@ -174,3 +174,4 @@ for_window [class="google-chrome"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="virt-manager"] floating enable
 for_window [class="Virt-manager"] floating enable
+for_window [class="Zathura"] floating enable
